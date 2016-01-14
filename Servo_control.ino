@@ -97,7 +97,7 @@ void set_servo(Servo servo,int angle){
 void read_signalstrength(int port){
   if (port>=0 && port<=5){
     int bytestoread=signalstrength_Readcount;
-    int portvalue=0;
+    unsigned long portvalue=0;
     while (bytestoread--){
       portvalue=portvalue+analogRead(port);
     }
