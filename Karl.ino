@@ -1,7 +1,7 @@
 #include <Servo.h>
 #include <SPI.h> 
 
-//Program named for Karl Jansky, who built the first radio telescope
+//Program named for Karl Jansky, who built the first radio telescope.
 //https://en.wikipedia.org/wiki/Karl_Guthe_Jansky
 
 String message_buffer;
