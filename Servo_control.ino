@@ -29,7 +29,7 @@ Servo servoY;
 byte Polarization=1; //High=Horizontal, low=Vertical
 byte Band=0; //Low=Low band, High=Highband
 #define PolarizationString "PSVertical,Horizontal"
-#define BandsString "BS10.70GHz–11.70GHz,11.70GHz–12.75GHz"
+#define BandsString "BS10700000000–11700000000,11700000000–12750000000"
 
 int settlingTime_mSeconds=5; //time for the dish to settle after moving one degree
 int slowMove_mSeconds=20;  //pause time between steps when making large moves
@@ -37,30 +37,9 @@ int slowMove_mSeconds=20;  //pause time between steps when making large moves
 byte SamplingRates[]={116,72,64,56,48,40,32,24,16,8};
 #define NUMBEROFSAMPLINGRATES 10 
 byte SelectedSamplingRate_Index=3;
-#define SamplingRateString "6.875Hz,13.75Hz,27.5Hz,55Hz,110Hz,220Hz,440Hz,880Hz,1.76kHz,3.52kHz"
+#define SamplingRateString "RS6.875,13.75,27.5,55,110,220,440,880,1760,3520"
 
 
-/*
-  Interface between Arduino DM board and Linear Tech LTC2440 24-bit ADC
-  Oct. 24 2012 John Beale
-
-   LTC2440  <---------->  Arduino
-   10: /EXT : ground (use external serial clock)
-   11: /CS <- to digital pin 10  (SS pin)
-   12: MISO -> to digital pin 12 (MISO pin)
-   13: SCLK <- to digital pin 13 (SCK pin)
-   15: BUSY -> to digital pin 9 (low when result ready)
-
-   1,8,9,16: GND :  all grounds must be connected
-   2: Vcc :   +5V supply
-   3: REF+ :  +2.5V reference
-   4: REF- :  GND
-   5: IN+  :  Input+
-   6: IN-  :  Input-
-   7: SDI  : +5V  (select 6.9 Hz output rate, or GND for 880 Hz rate)
-   14: Fo : GND  (select internal 9 MHz oscillator)
-
-*/
 #define VREF (5)    // ADC voltage reference
 #define PWAIT (10)   // milliseconds delay between readings
 #define SLAVESELECT 10  // digital pin 10 for CS/
@@ -217,12 +196,12 @@ boolean handle_query(){
   }
   
   if (message_buffer.equals("QR")) {
-    Serial.println("RS"+String(SelectedSamplingRate_Index));
+    Serial.println("R"+String(SelectedSamplingRate_Index));
     handled=true;
   }
   
   if (message_buffer.equals("QRS")) {
-    Serial.println("RR"+String(SamplingRateString));
+    Serial.println(SamplingRateString);
     handled=true;
   }
   
