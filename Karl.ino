@@ -14,15 +14,14 @@ int max_Y=150;
 int range_X=max_X-min_X;
 int range_Y=max_Y-min_Y;
 boolean invert_X=false;
-boolean invert_Y=false;
-//Home position for the dish.  This should be the resting position for the dish.
+boolean invert_Y=true;
+//Home position for the dish.  This should be the resting position for the dish
+//Position in true servo degrees
 int Home_X=30;
 int Home_Y=150;
 int current_X=Home_X;
 int current_Y=Home_Y;
 
-//Analog input port to read signal strength from
-int signalStrengthPort=0;
 Servo servoX;
 Servo servoY;
 
@@ -44,7 +43,6 @@ byte SelectedSamplingRate_Index=3;
 
 
 #define VREF (5)    // ADC voltage reference
-#define PWAIT (10)   // milliseconds delay between readings
 #define SLAVESELECT 10  // digital pin 10 for CS/
 #define BUSYPIN 9     // digital pin 9 for BUSY or READY/
 #define UNIT "UdBm"
@@ -375,7 +373,7 @@ void read_signalstrength(int signalstrength_Readcount){
     int count=signalstrength_Readcount;
     float portvalue=0;
     while (count--){
-      portvalue=portvalue+SpiRead();//analogRead(signalStrengthPort);
+      portvalue=portvalue+SpiRead();
     }
     portvalue=portvalue/signalstrength_Readcount;
     portvalue=dBFromVolts(portvalue);
