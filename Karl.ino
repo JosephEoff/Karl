@@ -33,7 +33,7 @@ byte Band=0; //Low=Low band, High=Highband
 #define PolarizationString "PSVertical,Horizontal"
 #define BandsString "BS10700000000–11700000000,11700000000–12750000000"
 
-int settlingTime_mSeconds=5; //time for the dish to settle after moving one degree
+int settlingTime_mSeconds=10; //time for the dish to settle after moving one degree
 int slowMove_mSeconds=20;  //pause time between steps when making large moves
 
 byte SamplingRates[]={116,72,64,56,48,40,32,24,16,8};
